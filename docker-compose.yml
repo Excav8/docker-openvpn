@@ -1,1 +1,13 @@
-
+version: '3'
+services:
+  openvpn:
+    cap_add:
+     - NET_ADMIN
+# build image from Dockerfile
+    build: .
+    container_name: openvpn
+    ports:
+     - "1195:1194/tcp"
+    restart: unless-stopped
+    volumes:
+     - ./openvpn-data/conf:/etc/openvpn
